@@ -1,36 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Delivery Dispatch Platform</title>
-  <link href="css/styles.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ovapass- On-Demand Delivery Service</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Ovapass</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="features.html">Features</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </header>
+    <!-- Header/Navigation Section -->
+    <header class="header-nav">
+        <div class="nav-container">
+            <div class="logo-container">
+                <h1 class="logo-text">Ovapass</h1>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#" class="nav-link">Drive</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Deliver</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Business</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn-login">Log in</button>
+                <button class="btn-signup">Sign up</button>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
 
-  <section class="hero">
-    <div class="container">
-      <h2>Smart Delivery Dispatch for Small Businesses</h2>
-      <p>Manage riders, accept orders, track deliveries — all in one place.</p>
-      <a href="contact.html" class="btn">Get Started</a>
-    </div>
-  </section>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Get what you need, delivered</h1>
+            <p class="hero-subtitle">Reliable courier service in minutes</p>
+            
+            <div class="delivery-form">
+                <div class="form-tabs">
+                    <button class="tab-btn active" data-tab="deliver">Deliver</button>
+                    <button class="tab-btn" data-tab="schedule">Schedule</button>
+                </div>
+                
+                <div class="form-content">
+                    <div class="input-group pickup-group">
+                        <label for="pickup" class="input-label">Pickup location</label>
+                        <input type="text" id="pickup" class="input-field" placeholder="Enter pickup address">
+                    </div>
+                    
+                    <div class="input-group destination-group">
+                        <label for="destination" class="input-label">Where to?</label>
+                        <input type="text" id="destination" class="input-field" placeholder="Enter destination">
+                    </div>
+                    
+                    <button class="btn-find-courier">Find a courier</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Ovapass. All rights reserved.</p>
-    </div>
-  </footer>
+    <!-- Services Section -->
+    <section class="services-section">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon express-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="service-title">Express Delivery</h3>
+                <p class="service-desc">Get items delivered in under 30 minutes</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon scheduled-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3 class="service-title">Scheduled Delivery</h3>
+                <p class="service-desc">Plan deliveries for specific times</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon bulk-icon">
+                    <i class="fas fa-boxes"></i>
+                </div>
+                <h3 class="service-title">Bulk Deliveries</h3>
+                <p class="service-desc">Multiple items or large packages</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon document-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3 class="service-title">Document Courier</h3>
+                <p class="service-desc">Secure document delivery</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section">
+        <h2 class="section-title">How Ovapass Courier Works</h2>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3 class="step-title">Request</h3>
+                    <p class="step-desc">Enter your pickup and delivery locations</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3 class="step-title">Match</h3>
+                    <p class="step-desc">We'll find the nearest available courier</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3 class="step-title">Track</h3>
+                    <p class="step-desc">Follow your delivery in real-time</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3 class="step-title">Deliver</h3>
+                    <p class="step-desc">Receive your items safely</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <h2 class="section-title">Transparent Pricing</h2>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <h3 class="pricing-tier">Basic</h3>
+                <div class="price">$5.99</div>
+                <div class="price-desc">+ $1.50 per mile</div>
+                <ul class="price-features">
+                    <li class="feature-item">Up to 5 lbs</li>
+                    <li class="feature-item">Standard delivery</li>
+                    <li class="feature-item">1-2 hour window</li>
+                </ul>
+                <button class="btn-select">Select</button>
+            </div>
+            
+            <div class="pricing-card featured">
+                <div class="popular-badge">Most Popular</div>
+                <h3 class="pricing-tier">Express</h3>
+                <div class="price">$9.99</div>
+                <div class="price-desc">+ $2.00 per mile</div>
+                <ul class="price-features">
+                    <li class="feature-item">Up to 20 lbs</li>
+                    <li class="feature-item">Priority delivery</li>
+                    <li class="feature-item">Under 30 minutes</li>
+                </ul>
+                <button class="btn-select">Select</button>
+            </div>
+            
+            <div class="pricing-card">
+                <h3 class="pricing-tier">Premium</h3>
+                <div class="price">$14.99</div>
+                <div class="price-desc">+ $2.50 per mile</div>
+                <ul class="price-features">
+                    <li class="feature-item">Up to 50 lbs</li>
+                    <li class="feature-item">Immediate dispatch</li>
+                    <li class="feature-item">15 minute delivery</li>
+                </ul>
+                <button class="btn-select">Select</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download Section -->
+    <section class="app-download-section">
+        <div class="app-content">
+            <div class="app-text">
+                <h2 class="section-title">Get the Ovapass Courier App</h2>
+                <p class="app-desc">Download the app for faster booking and real-time tracking</p>
+                <div class="download-buttons">
+                    <button class="btn-app-store">
+                        <i class="fab fa-apple"></i>
+                        <span>Download on the<br>App Store</span>
+                    </button>
+                    <button class="btn-google-play">
+                        <i class="fab fa-google-play"></i>
+                        <span>Get it on<br>Google Play</span>
+                    </button>
+                </div>
+            </div>
+            <div class="app-image">
+                <img src="https://via.placeholder.com/300x500" alt="SwiftCourier Mobile App" class="app-screenshot">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h2 class="logo-text">Ovapass Courier</h2>
+                <p class="copyright">© 2023 Ovapass Technologies Inc.</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="link-column">
+                    <h4 class="link-title">Company</h4>
+                    <ul class="link-list">
+                        <li><a href="#" class="footer-link">About us</a></li>
+                        <li><a href="#" class="footer-link">Careers</a></li>
+                        <li><a href="#" class="footer-link">Blog</a></li>
+                        <li><a href="#" class="footer-link">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div class="link-column">
+                    <h4 class="link-title">Products</h4>
+                    <ul class="link-list">
+                        <li><a href="#" class="footer-link">Ride</a></li>
+                        <li><a href="#" class="footer-link">Deliver</a></li>
+                        <li><a href="#" class="footer-link">Food Delivery</a></li>
+                        <li><a href="#" class="footer-link">Business</a></li>
+                    </ul>
+                </div>
+                
+                <div class="link-column">
+                    <h4 class="link-title">Global citizenship</h4>
+                    <ul class="link-list">
+                        <li><a href="#" class="footer-link">Safety</a></li>
+                        <li><a href="#" class="footer-link">Diversity</a></li>
+                        <li><a href="#" class="footer-link">Sustainability</a></li>
+                    </ul>
+                </div>
+                
+                <div class="link-column">
+                    <h4 class="link-title">Support</h4>
+                    <ul class="link-list">
+                        <li><a href="#" class="footer-link">Help Center</a></li>
+                        <li><a href="#" class="footer-link">Contact us</a></li>
+                        <li><a href="#" class="footer-link">Community guidelines</a></li>
+                        <li><a href="#" class="footer-link">Legal</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="social-media">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
+    

@@ -643,3 +643,86 @@ ul {
         flex-direction: column;
     }
 }
+
+
+{
+    /* Mobile menu active state */
+    .main-nav.active {
+        display: block !important;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    
+    .main-nav.active .nav-list {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .auth-buttons.active {
+        display: flex !important;
+        position: absolute;
+        top: calc(100% + 120px);
+        left: 20px;
+        width: calc(100% - 40px);
+    }
+    
+    .mobile-menu-btn.active i {
+        color: #000;
+    }
+    
+    /* Form error states */
+    .input-group.error .input-field {
+        border-color: #ff4444;
+    }
+    
+    .error-message {
+        color: #ff4444;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    
+    /* Pricing card selection */
+    .pricing-card.selected {
+        border: 2px solid #000;
+        transform: scale(1.02);
+    }
+    
+    /* Animation classes */
+    .service-card, .step, .pricing-card {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    
+    .service-card.animate, .step.animate, .pricing-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Delay animations for staggered effect */
+    .step:nth-child(1) { transition-delay: 0.1s; }
+    .step:nth-child(2) { transition-delay: 0.2s; }
+    .step:nth-child(3) { transition-delay: 0.3s; }
+    .step:nth-child(4) { transition-delay: 0.4s; }
+    
+    .service-card:nth-child(1) { transition-delay: 0.1s; }
+    .service-card:nth-child(2) { transition-delay: 0.2s; }
+    .service-card:nth-child(3) { transition-delay: 0.3s; }
+    .service-card:nth-child(4) { transition-delay: 0.4s; }
+    
+    .pricing-card:nth-child(1) { transition-delay: 0.1s; }
+    .pricing-card:nth-child(2) { transition-delay: 0.2s; }
+    .pricing-card:nth-child(3) { transition-delay: 0.3s; }
+`;
+
+// Inject additional styles
+const styleElement = document.createElement('style');
+styleElement.innerHTML = additionalStyles;
+document.head.appendChild(styleElement);
+    }
+}

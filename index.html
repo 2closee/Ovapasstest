@@ -7,39 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
-
-<!-- Your Config -->
-<script>
-  // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyC7wfhhhihXZInLbEGQ89XOoCk-qbLPKP8",
-  authDomain: "ovapass-logistis.firebaseapp.com",
-  databaseURL: "https://ovapass-logistis-default-rtdb.firebaseio.com",
-  projectId: "ovapass-logistis",
-  storageBucket: "ovapass-logistis.firebasestorage.app",
-  messagingSenderId: "440766628053",
-  appId: "1:440766628053:web:7265ca38aa177c0329625c",
-  measurementId: "G-CSSBNP83VE"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-  
-  firebase.initializeApp(firebaseConfig);
-</script>
-
 </head>
 <body>
     <!-- Header/Navigation Section -->
@@ -296,6 +263,30 @@ const analytics = getAnalytics(app);
         </div>
     </footer>
 
+    <script src="script.js"></script>
+      <!-- Firebase SDKs (CDN) -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
+    
+    <!-- Firebase Initialization -->
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyC7wfhhhihXZInLbEGQ89XOoCk-qbLPKP8",
+        authDomain: "ovapass-logistis.firebaseapp.com",
+        databaseURL: "https://ovapass-logistis-default-rtdb.firebaseio.com",
+        projectId: "ovapass-logistis",
+        storageBucket: "ovapass-logistis.firebasestorage.app",
+        messagingSenderId: "440766628053",
+        appId: "1:440766628053:web:7265ca38aa177c0329625c",
+        measurementId: "G-CSSBNP83VE"
+      };
+      
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <!-- Your main JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>

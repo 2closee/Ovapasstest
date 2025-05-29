@@ -147,6 +147,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+
+    const auth = firebase.auth();
+const database = firebase.database();
+
+document.querySelector('.btn-signup').addEventListener('click', () => {
+  const email = prompt("Enter email:");
+  const password = prompt("Enter password:");
+  
+  auth.createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Save user data to Realtime DB
+      database.ref('users/' + userCredential.user.uid).set({
+        email: email,
+        signupDate: new Date().toISOString()
+      });
+      alert("Signup successful!");
+    })
+    .catch((error) => {
+      alert("Error: " + error.message);
+    });
+});
+
+document.querySelector('.btn-login').addEventListener('click', () => {
+  const email = prompt("Enter email:");
+  const password = prompt("Enter password:");
+  
+  auth.signInWithEmailAndPassword(email, password)
+    .then(() => {
+      alert("Logged in!");
+    })
+    .catch((error) => {
+      alert("Error: " + error.message);
+    });
+});
+
     // ===== Inject CSS =====
     const style = document.createElement('style');
     style.textContent = `

@@ -15,7 +15,21 @@
     <!-- Header/Navigation Section -->
     <header class="header-nav">
         <div class="nav-container">
-            <div class="logo-container">
+
+            <!-- Mobile Navigation Menu (hidden by default) -->
+<nav class="mobile-nav" id="mobileNav" style="display:none;">
+  <ul class="nav-list">
+    <li class="nav-item"><a href="#" class="nav-link">Drive</a></li>
+    <li class="nav-item"><a href="#" class="nav-link">Deliver</a></li>
+    <li class="nav-item"><a href="#" class="nav-link">Business</a></li>
+    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+  </ul>
+  <div class="auth-buttons">
+    <button class="btn-login">Log in</button>
+    <button class="btn-signup">Sign up</button>
+  </div>
+</nav>
+              <div class="logo-container">
                 <h1 class="logo-text">Ovapass</h1>
             </div>
             <nav class="main-nav">
@@ -275,19 +289,43 @@
     <script src="firebase-config.js"></script>
   <script src="main.js"></script>
 
-    <!-- Mobile Navigation Menu (hidden by default) -->
-<nav class="mobile-nav" id="mobileNav" style="display:none;">
-  <ul class="nav-list">
-    <li class="nav-item"><a href="#" class="nav-link">Drive</a></li>
-    <li class="nav-item"><a href="#" class="nav-link">Deliver</a></li>
-    <li class="nav-item"><a href="#" class="nav-link">Business</a></li>
-    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-  </ul>
-  <div class="auth-buttons">
-    <button class="btn-login">Log in</button>
-    <button class="btn-signup">Sign up</button>
+<!-- Login Modal -->
+<div id="login-modal" class="auth-modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2 class="modal-title">Log in</h2>
+    <form id="login-form">
+      <div class="input-group">
+        <label for="login-email" class="input-label">Email</label>
+        <input type="email" id="login-email" class="input-field" required>
+      </div>
+      <div class="input-group">
+        <label for="login-password" class="input-label">Password</label>
+        <input type="password" id="login-password" class="input-field" required>
+      </div>
+      <button type="submit" class="btn-login">Log In</button>
+    </form>
   </div>
-</nav>
+</div>
+
+<!-- Signup Modal -->
+<div id="signup-modal" class="auth-modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2 class="modal-title">Sign up</h2>
+    <form id="signup-form">
+      <div class="input-group">
+        <label for="signup-email" class="input-label">Email</label>
+        <input type="email" id="signup-email" class="input-field" required>
+      </div>
+      <div class="input-group">
+        <label for="signup-password" class="input-label">Password</label>
+        <input type="password" id="signup-password" class="input-field" required>
+      </div>
+      <button type="submit" class="btn-signup">Create Account</button>
+    </form>
+  </div>
+</div>
     
 </body>
 </html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Ovapass</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+    .auth-page-container {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f9f9f9;
+    }
+    .auth-form-box {
+        background: #fff;
+        padding: 2.5rem 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 6px 32px rgba(40,40,90,0.08), 0 1.5px 6px rgba(0,0,0,0.02);
+        width: 100%;
+        max-width: 400px;
+    }
+    .auth-form-box h2 {
+        margin-bottom: 1rem;
+        text-align: center;
+        color: #14213d;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+    .input-group {
+        margin-bottom: 1.25rem;
+    }
+    .input-label {
+        display: block;
+        margin-bottom: 0.35rem;
+        color: #555;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+    .input-field {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1.5px solid #e0e0e0;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        background: #f7fafc;
+        transition: border 0.2s;
+    }
+    .input-field:focus {
+        border-color: #fca311;
+        outline: none;
+    }
+    .btn-auth {
+        width: 100%;
+        padding: 0.8rem;
+        background: #fca311;
+        border: none;
+        border-radius: 0.5rem;
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 0.5rem;
+        transition: background 0.2s;
+    }
+    .btn-auth:hover {
+        background: #e59205;
+    }
+    .switch-link {
+        display: block;
+        text-align: center;
+        margin-top: 1rem;
+        color: #14213d;
+        text-decoration: none;
+        font-size: 1rem;
+    }
+    </style>
+</head>
+<body>
+    <div class="auth-page-container">
+        <form class="auth-form-box" id="login-form">
+            <h2>Login to Ovapass</h2>
+            <div class="input-group">
+                <label class="input-label" for="login-email">Email</label>
+                <input class="input-field" type="email" id="login-email" required placeholder="Enter your email">
+            </div>
+            <div class="input-group">
+                <label class="input-label" for="login-password">Password</label>
+                <input class="input-field" type="password" id="login-password" required placeholder="Password">
+            </div>
+            <button type="submit" class="btn-auth">Log In</button>
+            <a href="signup.html" class="switch-link">Don't have an account? Sign Up</a>
+        </form>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

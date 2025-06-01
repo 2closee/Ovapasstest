@@ -15,50 +15,50 @@ firebase.initializeApp(firebaseConfig);
 
 // Auth Functions
 function setupAuthModals() {
-    // Modal toggle logic (attach to ALL .btn-login and .btn-signup)
+    // Modal open buttons
     document.querySelectorAll('.btn-login').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.onclick = () => {
             const modal = document.getElementById('login-modal');
             if (modal) modal.style.display = 'block';
-        });
+        };
     });
-
     document.querySelectorAll('.btn-signup').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.onclick = () => {
             const modal = document.getElementById('signup-modal');
             if (modal) modal.style.display = 'block';
-        });
+        };
     });
 
     // Close modals
     document.querySelectorAll('.close-modal').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.onclick = () => {
             document.querySelectorAll('.auth-modal').forEach(modal => {
                 modal.style.display = 'none';
             });
-        });
+        };
     });
 
-    // Close when clicking outside modal
-    window.addEventListener('click', (e) => {
-        if (e.target.classList.contains('auth-modal')) {
+    // Click outside modal closes it
+    window.onclick = (e) => {
+        if (e.target.classList && e.target.classList.contains('auth-modal')) {
             e.target.style.display = 'none';
         }
-    });
+    };
 
-    // Login handler
+    // Login form submit
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
-        loginForm.addEventListener('submit', async (e) => {
+        loginForm.onsubmit = async (e) => {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
-            const btn = e.target.querySelector('button');
+            const btn = loginForm.querySelector('button');
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
             try {
                 await firebase.auth().signInWithEmailAndPassword(email, password);
-                document.getElementById('login-modal').style.display = 'none';
+                const modal = document.getElementById('login-modal');
+                if (modal) modal.style.display = 'none';
                 showNotification('success', 'Logged in successfully!');
             } catch (error) {
                 showNotification('error', error.message);
@@ -66,17 +66,17 @@ function setupAuthModals() {
                 btn.disabled = false;
                 btn.innerHTML = 'Log In';
             }
-        });
+        };
     }
 
-    // Signup handler
+    // Signup form submit
     const signupForm = document.getElementById('signup-form');
     if (signupForm) {
-        signupForm.addEventListener('submit', async (e) => {
+        signupForm.onsubmit = async (e) => {
             e.preventDefault();
             const email = document.getElementById('signup-email').value;
             const password = document.getElementById('signup-password').value;
-            const btn = e.target.querySelector('button');
+            const btn = signupForm.querySelector('button');
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
             try {
@@ -85,7 +85,8 @@ function setupAuthModals() {
                     email: email,
                     createdAt: firebase.database.ServerValue.TIMESTAMP
                 });
-                document.getElementById('signup-modal').style.display = 'none';
+                const modal = document.getElementById('signup-modal');
+                if (modal) modal.style.display = 'none';
                 showNotification('success', 'Account created successfully!');
             } catch (error) {
                 showNotification('error', error.message);
@@ -93,7 +94,7 @@ function setupAuthModals() {
                 btn.disabled = false;
                 btn.innerHTML = 'Create Account';
             }
-        });
+        };
     }
 }
 
@@ -106,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function() {
         mobileMenuBtn.addEventListener("click", function() {
             mobileNav.style.display = (mobileNav.style.display === "block") ? "none" : "block";
         });
-        // Optionally close menu when a link is clicked (for better UX)
         mobileNav.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
                 mobileNav.style.display = "none";
@@ -115,9 +115,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// Auth State Listener
+// Auth State Listener - update ALL .auth-buttons and re-attach modal handlers
 firebase.auth().onAuthStateChanged((user) => {
-    // Update all .auth-buttons on the page
     document.querySelectorAll('.auth-buttons').forEach(authButtons => {
         if (user) {
             authButtons.innerHTML = `
@@ -130,17 +129,16 @@ firebase.auth().onAuthStateChanged((user) => {
                 <button class="btn-signup">Sign up</button>
             `;
         }
-
-        // Always re-attach modal handlers after updating buttons
+        // Attach modal openers to new buttons
         setupAuthModals();
 
-        // Attach logout handler if logged in
+        // Attach logout to any new logout buttons
         const logoutBtn = authButtons.querySelector('.btn-logout');
         if (logoutBtn) {
-            logoutBtn.addEventListener('click', () => {
+            logoutBtn.onclick = () => {
                 firebase.auth().signOut();
                 showNotification('success', 'Logged out successfully');
-            });
+            };
         }
     });
 });
@@ -161,7 +159,4 @@ function showNotification(type, message) {
 }
 
 // Initialize when DOM loads
-document.addEventListener('DOMContentLoaded', () => {
-    setupAuthModals();
-    // Your other initializations...
-});
+document.addEventListener('DOMContentLoaded', setupAuthModals);

@@ -94,7 +94,6 @@ document.addEventListener("DOMContentLoaded", function() {
     mobileMenuBtn.addEventListener("click", function() {
       mobileNav.style.display = (mobileNav.style.display === "block") ? "none" : "block";
     });
-
     // Optionally close menu when a link is clicked (for better UX)
     mobileNav.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {

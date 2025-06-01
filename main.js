@@ -15,13 +15,19 @@ firebase.initializeApp(firebaseConfig);
 
 // Auth Functions
 function setupAuthModals() {
-    // Modal toggle logic
-    document.querySelector('.btn-login').addEventListener('click', () => {
-        document.getElementById('login-modal').style.display = 'block';
+    // Modal toggle logic (attach to ALL .btn-login and .btn-signup)
+    document.querySelectorAll('.btn-login').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modal = document.getElementById('login-modal');
+            if (modal) modal.style.display = 'block';
+        });
     });
 
-    document.querySelector('.btn-signup').addEventListener('click', () => {
-        document.getElementById('signup-modal').style.display = 'block';
+    document.querySelectorAll('.btn-signup').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modal = document.getElementById('signup-modal');
+            if (modal) modal.style.display = 'block';
+        });
     });
 
     // Close modals
@@ -41,88 +47,102 @@ function setupAuthModals() {
     });
 
     // Login handler
-    document.getElementById('login-form').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
-        const btn = e.target.querySelector('button');
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
-        try {
-            await firebase.auth().signInWithEmailAndPassword(email, password);
-            document.getElementById('login-modal').style.display = 'none';
-            showNotification('success', 'Logged in successfully!');
-        } catch (error) {
-            showNotification('error', error.message);
-        } finally {
-            btn.disabled = false;
-            btn.innerHTML = 'Log In';
-        }
-    });
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const btn = e.target.querySelector('button');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+            try {
+                await firebase.auth().signInWithEmailAndPassword(email, password);
+                document.getElementById('login-modal').style.display = 'none';
+                showNotification('success', 'Logged in successfully!');
+            } catch (error) {
+                showNotification('error', error.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Log In';
+            }
+        });
+    }
 
     // Signup handler
-    document.getElementById('signup-form').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('signup-email').value;
-        const password = document.getElementById('signup-password').value;
-        const btn = e.target.querySelector('button');
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
-        try {
-            const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
-            await firebase.database().ref('users/' + userCredential.user.uid).set({
-                email: email,
-                createdAt: firebase.database.ServerValue.TIMESTAMP
-            });
-            document.getElementById('signup-modal').style.display = 'none';
-            showNotification('success', 'Account created successfully!');
-        } catch (error) {
-            showNotification('error', error.message);
-        } finally {
-            btn.disabled = false;
-            btn.innerHTML = 'Create Account';
-        }
-    });
+    const signupForm = document.getElementById('signup-form');
+    if (signupForm) {
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const btn = e.target.querySelector('button');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
+            try {
+                const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+                await firebase.database().ref('users/' + userCredential.user.uid).set({
+                    email: email,
+                    createdAt: firebase.database.ServerValue.TIMESTAMP
+                });
+                document.getElementById('signup-modal').style.display = 'none';
+                showNotification('success', 'Account created successfully!');
+            } catch (error) {
+                showNotification('error', error.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Create Account';
+            }
+        });
+    }
 }
 
 // Mobile menu toggle
 document.addEventListener("DOMContentLoaded", function() {
-  const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
-  const mobileNav = document.getElementById("mobileNav");
+    const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+    const mobileNav = document.getElementById("mobileNav");
 
-  if (mobileMenuBtn && mobileNav) {
-    mobileMenuBtn.addEventListener("click", function() {
-      mobileNav.style.display = (mobileNav.style.display === "block") ? "none" : "block";
-    });
-    // Optionally close menu when a link is clicked (for better UX)
-    mobileNav.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        mobileNav.style.display = "none";
-      });
-    });
-  }
+    if (mobileMenuBtn && mobileNav) {
+        mobileMenuBtn.addEventListener("click", function() {
+            mobileNav.style.display = (mobileNav.style.display === "block") ? "none" : "block";
+        });
+        // Optionally close menu when a link is clicked (for better UX)
+        mobileNav.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                mobileNav.style.display = "none";
+            });
+        });
+    }
 });
-
 
 // Auth State Listener
 firebase.auth().onAuthStateChanged((user) => {
-    const authButtons = document.querySelector('.auth-buttons');
-    if (user) {
-        authButtons.innerHTML = `
-            <button class="btn-logout">Logout</button>
-            <span class="user-email">${user.email}</span>
-        `;
-        document.querySelector('.btn-logout').addEventListener('click', () => {
-            firebase.auth().signOut();
-            showNotification('success', 'Logged out successfully');
-        });
-    } else {
-        authButtons.innerHTML = `
-            <button class="btn-login">Log in</button>
-            <button class="btn-signup">Sign up</button>
-        `;
+    // Update all .auth-buttons on the page
+    document.querySelectorAll('.auth-buttons').forEach(authButtons => {
+        if (user) {
+            authButtons.innerHTML = `
+                <button class="btn-logout">Logout</button>
+                <span class="user-email">${user.email}</span>
+            `;
+        } else {
+            authButtons.innerHTML = `
+                <button class="btn-login">Log in</button>
+                <button class="btn-signup">Sign up</button>
+            `;
+        }
+
+        // Always re-attach modal handlers after updating buttons
         setupAuthModals();
-    }
+
+        // Attach logout handler if logged in
+        const logoutBtn = authButtons.querySelector('.btn-logout');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                firebase.auth().signOut();
+                showNotification('success', 'Logged out successfully');
+            });
+        }
+    });
 });
 
 // Notification function

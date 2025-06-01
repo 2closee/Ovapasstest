@@ -85,6 +85,26 @@ function setupAuthModals() {
     });
 }
 
+// Mobile menu toggle
+document.addEventListener("DOMContentLoaded", function() {
+  const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+  const mobileNav = document.getElementById("mobileNav");
+
+  if (mobileMenuBtn && mobileNav) {
+    mobileMenuBtn.addEventListener("click", function() {
+      mobileNav.style.display = (mobileNav.style.display === "block") ? "none" : "block";
+    });
+
+    // Optionally close menu when a link is clicked (for better UX)
+    mobileNav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileNav.style.display = "none";
+      });
+    });
+  }
+});
+
+
 // Auth State Listener
 firebase.auth().onAuthStateChanged((user) => {
     const authButtons = document.querySelector('.auth-buttons');
